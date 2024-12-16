@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  smb_bot:
+    build:
+      context: .
+    container_name: smb_bot
+    restart: always
