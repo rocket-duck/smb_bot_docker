@@ -46,4 +46,4 @@ WORKDIR /app/smb_bot
 RUN pipx install poetry
 
 # Выполняем команды через Makefile
-CMD make install && make bot-run
+CMD git pull && make install && make bot-run
