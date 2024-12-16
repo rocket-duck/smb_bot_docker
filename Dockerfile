@@ -10,6 +10,12 @@ openssh-client \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
 
+# Устанавливаем Poetry
+RUN curl -sSL https://install.python-poetry.org | python3 -
+
+# Добавляем Poetry в PATH
+ENV PATH="/root/.local/bin:$PATH"
+
 # Создаём директорию для ключей
 RUN mkdir -p /root/.ssh
 
