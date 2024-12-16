@@ -19,6 +19,6 @@ RUN ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
 
 # Клонируем репозиторий
 WORKDIR /app
-CMD git clone git@github.com:ваш_репозиторий/smb_bot.git . && \
+CMD git clone git clone git@github.com:rocket-duck/smb_bot_docker.git . && \
     make install && \
     make bot-run
