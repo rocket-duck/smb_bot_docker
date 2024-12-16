@@ -2,7 +2,13 @@
 FROM python:3.12-slim
 
 # Устанавливаем OpenSSH-клиент
-RUN apt-get update && apt-get install -y openssh-client git && apt-get clean
+RUN apt-get update && apt-get install -y \
+git \
+build-essential \
+make \
+openssh-client \
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/*
 
 # Создаём директорию для ключей
 RUN mkdir -p /root/.ssh
