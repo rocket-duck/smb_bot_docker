@@ -1,20 +1,23 @@
 # Используем базовый образ
 FROM python:3.12-slim
 
-# Устанавливаем OpenSSH-клиент
+# Устанавливаем OpenSSH-клиент и другие зависимости
 RUN apt-get update && apt-get install -y \
-git \
-build-essential \
-curl \
-make \
-openssh-client \
-&& apt-get clean \
-&& rm -rf /var/lib/apt/lists/*
+    git \
+    build-essential \
+    curl \
+    make \
+    openssh-client \
+    python3-pip \
+    python3-venv \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Устанавливаем Poetry
-RUN curl -sSL https://install.python-poetry.org | python3 -
+# Устанавливаем pipx
+RUN python3 -m pip install --no-cache-dir pipx && \
+    python3 -m pipx ensurepath
 
-# Добавляем Poetry в PATH
+# Добавляем pipx в PATH
 ENV PATH="/root/.local/bin:$PATH"
 
 # Создаём директорию для ключей
@@ -39,7 +42,8 @@ RUN git clone git@github.com:rocket-duck/smb_bot.git smb_bot
 # Переходим в папку репозитория
 WORKDIR /app/smb_bot
 
-# Commands
-pipx install poetry
-make install
-make bot-run
+# Устанавливаем Poetry через pipx
+RUN pipx install poetry
+
+# Выполняем команды через Makefile
+CMD make install && make bot-run
