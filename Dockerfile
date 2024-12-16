@@ -30,8 +30,11 @@ RUN chmod 600 /root/.ssh/id_rsa
 # Добавляем GitHub в известные хосты
 RUN ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
 
-# Клонируем репозиторий
+# Устанавливаем рабочую директорию
 WORKDIR /app
-CMD git clone git@github.com:rocket-duck/smb_bot.git && \
-    make install && \
-    make bot-run
+
+# Клонируем репозиторий
+RUN git clone https://github.com/ваш-репозиторий/smb_bot.git smb_bot
+
+# Переходим в папку репозитория
+WORKDIR /app/smb_bot
