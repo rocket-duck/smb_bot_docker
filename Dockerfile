@@ -34,7 +34,7 @@ RUN ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
 WORKDIR /app
 
 # Клонируем репозиторий
-RUN git clone https://github.com/ваш-репозиторий/smb_bot.git smb_bot
+RUN git clone git@github.com:rocket-duck/smb_bot.git smb_bot
 
 # Переходим в папку репозитория
 WORKDIR /app/smb_bot
