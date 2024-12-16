@@ -38,3 +38,8 @@ RUN git clone git@github.com:rocket-duck/smb_bot.git smb_bot
 
 # Переходим в папку репозитория
 WORKDIR /app/smb_bot
+
+# Commands
+pipx install poetry
+make install
+make bot-run
